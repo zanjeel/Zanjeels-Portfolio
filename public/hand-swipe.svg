@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Left Arrow -->
+    <path d="M12 32H22M12 32L16 28M12 32L16 36" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right Arrow -->
+    <path d="M52 32H42M52 32L48 28M52 32L48 36" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Hand -->
+    <path d="M39 30.5V25C39 23.3431 37.6569 22 36 22C34.3431 22 33 23.3431 33 25V30.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M33 25V20C33 18.3431 31.6569 17 30 17C28.3431 17 27 18.3431 27 20V30.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M27 23V20C27 18.3431 25.6569 17 24 17C22.3431 17 21 18.3431 21 20V33" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M39 31V33C39 37.4183 35.4183 41 31 41H30C25.5817 41 22 37.4183 22 33V32" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg> 

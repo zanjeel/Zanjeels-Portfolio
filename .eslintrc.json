@@ -1,0 +1,63 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@next/next/no-img-element": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "allowReferrer": true
+      }
+    ],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "position",
+          "rotation",
+          "args",
+          "object",
+          "geometry",
+          "material",
+          "intensity",
+          "angle",
+          "penumbra",
+          "castShadow",
+          "receiveShadow",
+          "dispose",
+          "scale",
+          "attach",
+          "metalness",
+          "roughness",
+          "envMapIntensity",
+          "clearcoat",
+          "clearcoatRoughness",
+          "transmission",
+          "ior",
+          "thickness",
+          "attenuationTint",
+          "attenuationDistance",
+          "color",
+          "emissive",
+          "emissiveIntensity",
+          "maxPolarAngle",
+          "enableZoom",
+          "preset",
+          "animationName",
+          "skeleton",
+          "morphTargetInfluences",
+          "morphTargetDictionary"
+        ]
+      }
+    ]
+  }
+}

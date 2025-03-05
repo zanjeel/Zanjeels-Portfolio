@@ -84,7 +84,7 @@ const Experience2 = () => {
                                             <div className='flex flex-col h-full justify-start items-center py-2'>
                                                 <RiseOnScroll delay={0.3 + (index * 0.1)}>
                                                     <div className='work-content_logo'>
-                                                        <img src={icon} alt="logo" />
+                                                        <img src={icon} alt="logo" className='rounded-2xl' />
                                                     </div>
                                                 </RiseOnScroll>
                                                 <div className='work-content_bar' />

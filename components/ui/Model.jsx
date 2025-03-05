@@ -12,12 +12,12 @@ const Model = ({ animationName = 'Idle2', ...props }) => {
 
     const { animations: idleAnimation } = useFBX('animations/Idle2.fbx');
     const { animations: saluteAnimation } = useFBX('animations/MeetingFemale.fbx');
-    const { animations: clappingAnimation } = useFBX('animations/clapping.fbx');
+    const { animations: clappingAnimation } = useFBX('animations/Typing1.fbx');
     const { animations: victoryAnimation } = useFBX('animations/Talking_0.fbx');
 
     idleAnimation[0].name = 'Idle2';
     saluteAnimation[0].name = 'MeetingFemale';
-    clappingAnimation[0].name = 'clapping';
+    clappingAnimation[0].name = 'Typing1';
     victoryAnimation[0].name = 'Talking_0';
 
     const { actions, mixer } = useAnimations(

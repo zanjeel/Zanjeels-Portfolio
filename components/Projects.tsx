@@ -220,7 +220,7 @@ function Projects() {
 
                     {/* Content below image */}
                     <div className="p-6 sm:p-8 space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 text-center">
+                      <h2 className="text-2xl font-bold text-gray-900 text-center">
                         {project.title}
                       </h2>
                       <p className="text-gray-600 text-center">
@@ -247,10 +247,10 @@ function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-violet-600 font-medium rounded-3xl hover:bg-gray-100 transition-colors"
+                          className="border-2 border-white inline-flex items-center gap-2 px-6 py-3 bg-violet-600 font-semibold text-white rounded-3xl hover:bg-white hover:text-violet-600 hover:border-violet-600 transition-colors"
                         >
-                          View Project
-                          <ExternalLink className="w-4 h-4" />
+                          View Live
+                          <ExternalLink className="w-4 h-4 font-bold" />
                         </a>
                       </div>
                     </div>
@@ -259,7 +259,7 @@ function Projects() {
                   <>
                     {/* Right Column: Content at top */}
                     <div className="p-6 sm:p-8 space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 text-center">
+                      <h2 className="text-2xl font-bold text-gray-900 text-center">
                         {project.title}
                       </h2>
                       <p className="text-gray-600 text-center">
@@ -272,10 +272,10 @@ function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-violet-600 font-medium rounded-3xl hover:bg-gray-100 transition-colors"
+                          className="border-2 border-white inline-flex items-center gap-2 px-6 py-3 bg-violet-600 font-semibold text-white rounded-3xl hover:bg-white hover:text-violet-600 hover:border-violet-600 transition-colors"
                         >
-                          View Project
-                          <ExternalLink className="w-4 h-4" />
+                          View Live
+                          <ExternalLink className="w-4 h-4 font-bold" />
                         </a>
                       </div>
 

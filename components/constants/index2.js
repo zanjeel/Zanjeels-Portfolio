@@ -24,7 +24,7 @@ export const navLinks = [
 export const StatsData = [
   {
     id: 1,
-    types: 'Project',
+    types: 'Projects',
     num: '20',
   },
   {
@@ -41,26 +41,38 @@ export const StatsData = [
 export const workExperiences = [
   {
     id: 1,
-    icon: '/next.svg',
-    name: 'Risidio',
-    pos: 'Developer',
-    duration: '2022 - Present',
+    icon: '/society-logo.jpg',
+    name: 'Data Science Society at Brunel',
+    pos: 'Chair',
+    duration: 'Feb 2024 - Sep 2024',
     title: [
-      "Risido is a tech startup in London with global client base.",
-      "Here I developed scalable software and web solutions, working with huge datasets to bring their own flagship 3D metaverse to life."
+      "Data Science Society at Brunel is a Leading Tech organisation increasing tech literacy amongst students.",
+      "Here I led weekly Programming sessions for 50+ students in a range of programming languages including C++, Python, React, JavaScript and more."
     ],
     animation: 'Talking_0',
   },
   {
     id: 2,
-    icon: '/tail.svg',
+    icon: '/risidio-logo.jpg',
+    name: 'Risidio',
+    pos: 'Developer Intern',
+    duration: 'Jan 2024 - Jun 2024',
+    title: [
+      "Risido is a tech startup in London with a global client base.",
+      "Here I developed scalable software and web solutions, working with huge datasets to bring their own flagship 3D metaverse to life."
+    ],
+    animation: 'Talking_0',
+  },
+  {
+    id: 3,
+    icon: '/devsinc-logo.jpg',
     name: 'Devsinc',
     pos: 'Software Engineer Intern',
-    duration: '2020 - 2022',
+    duration: 'Jul 2022 - Oct 2022',
     title: [
       "Devsinc is a premier software firm and partners of Amazon, Google & more.",
-      "I built web components and worked on their internal software tool to optimise ETL pipelines."
+      "I built software and web components for their website and worked on a software and data visualisation tool to optimise ETL pipelines."
     ],
-    animation: 'MeetingFemale',
+    animation: 'Typing1',
   },
 ];

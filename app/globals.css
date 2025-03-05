@@ -169,7 +169,7 @@
   }
 
   .work-content_logo {
-    @apply rounded-3xl w-16 h-16 p-2 bg-purple flex justify-center items-center;
+    @apply rounded-full w-16 h-16 p-2 flex justify-center items-center;
   }
 
 

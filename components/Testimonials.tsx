@@ -55,11 +55,11 @@ const testimonials = [
     username: "Mentor, Brunel University",
     bgColor: "bg-orange-100",
   },
-     {
-    text: "Zanjeel did a great job as our Developer and helped build our product from the ground up. She was a great asset to our team and we look forward to working with her again in the future.",
+  {
+    text: "Zanjeel has always impressed me with your endless enthusiasm, and can-do attitude! You have a great future ahead as a brilliant software professional.",
     imageSrc: "/new-robot-pink.png",
-    name: "Peter Ponton",
-    username: "CEO, Risidio",
+    name: "Cigdem Sengul",
+    username: "Professor, Brunel University",
     bgColor: "bg-pink-100",
   },
    {

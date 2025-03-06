@@ -43,7 +43,7 @@ const projects: Project[] = [
   {
     title: "Zeej AI",
     description: "A 3D AI avatar that answers queries in real time with interactive lip syncing and facial expressions with Three.js, React, Node.js and API integration.",
-    link: "https://threed-chatbot-zoe-frontend.onrender.com",
+    link: "https://3-d-chatbot-zeej-frontend.vercel.app",
     category: 'Software',
     technologies: [
       { name: "Three.js", icon: "/three-js-icon.png" },

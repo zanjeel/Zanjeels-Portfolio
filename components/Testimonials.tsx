@@ -56,11 +56,11 @@ const testimonials = [
     bgColor: "bg-orange-100",
   },
   {
-    text: "Zanjeel has always impressed me with your endless enthusiasm, and can-do attitude! You have a great future ahead as a brilliant software professional.",
-    imageSrc: "/new-robot-pink.png",
+    text: "Zanjeel has always impressed me with her endless enthusiasm, and can-do attitude! She has a great future ahead as a brilliant software professional.",
+    imageSrc: "/new-donut-pink.png",
     name: "Cigdem Sengul",
     username: "Professor, Brunel University",
-    bgColor: "bg-pink-100",
+    bgColor: "bg-red-100",
   },
    {
     text: "Managing Zanjeel at Devsinc was a pleasure. She was a great asset to the team.",

@@ -11,7 +11,7 @@ import RotatingButton2 from "@/components/ui/RotatingButton2";
 // Load MetallicPaintRender with custom loading strategy
 const MetallicPaintRender = dynamic(() => import("@/components/MetallicPaintRender"), {
   ssr: false,
-  loading: () => <Loader />,
+  loading: () => <div className="w-full h-screen bg-black" />,
 });
 
 // Group related components together for better code splitting
@@ -141,14 +141,14 @@ const Preloader = ({ setIsLoading }: PreloaderProps) => {
     // Set minimum loading time separately
     setTimeout(() => {
       setIsBirdflyLoaded(true);
-    }, 3500); // Increased to 4 seconds for smoother loading
+    }, 3300); // Increased to 4 seconds for smoother loading
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCounter(prev => {
         const elapsedTime = Date.now() - startTime;
-        const minTimeReached = elapsedTime > 3500;
+        const minTimeReached = elapsedTime > 3300;
         
         let increment;
         if (!isBirdflyLoaded) {
@@ -156,10 +156,10 @@ const Preloader = ({ setIsLoading }: PreloaderProps) => {
           increment = Math.min(prev + 0.6, 20);
         } else if (prev < 20) {
           // If still under 20%, slowly progress
-          increment = Math.min(prev + 0.4, 20);
+          increment = Math.min(prev + 0.6, 20);
         } else if (!minTimeReached) {
           // Medium speed until minimum time reached (20-60%)
-          increment = Math.min(prev + 0.6, 60);
+          increment = Math.min(prev + 0.7, 60);
         } else {
           // Final phase (60-100%)
           increment = Math.min(prev + 1.5, 100);

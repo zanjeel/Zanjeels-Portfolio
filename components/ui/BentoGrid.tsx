@@ -6,6 +6,7 @@ import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "../MagicButton";
 import { motion, type TargetAndTransition } from "framer-motion";
+import Image from 'next/image';
 
 export const BentoGrid = ({
   className,
@@ -161,17 +162,21 @@ export const BentoGridItem = ({
         >
           {id === 5 ? (
             <div className="object-cover w-full h-full">
-            <img
+              <Image
                 src="/zeejAIphoto.png"
                 alt="AI Chatbot Preview"
+                width={800}
+                height={600}
                 className="-mt-9 md:mt-24 lg:-mt-9 object-cover transition-opacity duration-300"
               />
             </div>
           ) : (
             spareImg && (
-              <img
+              <Image
                 src={spareImg}
                 alt={spareImg}
+                width={400}
+                height={400}
                 className="object-cover object-center w-full h-full"
               />
             )

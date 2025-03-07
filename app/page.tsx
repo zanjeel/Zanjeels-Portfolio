@@ -1,27 +1,89 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import dynamic from 'next/dynamic';
+import { Loader } from '@react-three/drei';
 
 import { Hero2 } from "@/components/Hero2";
-import Grid from "@/components/Grid";
-// import Approach from "@/components/Approach";
-import Experience2 from "@/components/Experience2";
-import Stats from "@/components/Stats";
 import { Header } from "@/components/Header";
-import { LogoTicker } from "@/components/LogoTicker";
-import { Testimonials } from "@/components/Testimonials";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer2 from "@/components/Footer2";
 import CustomCursor from "@/components/ui/CustomCursor";
 import RotatingButton2 from "@/components/ui/RotatingButton2";
-import Footer from "@/components/Footer";
 
-// Dynamic import of MetallicPaintRender
+// Load MetallicPaintRender with custom loading strategy
 const MetallicPaintRender = dynamic(() => import("@/components/MetallicPaintRender"), {
   ssr: false,
-  loading: () => <div className="w-full h-screen bg-black" />
+  loading: () => <Loader />,
 });
+
+// Group related components together for better code splitting
+const ExperienceSection = dynamic(() => 
+  import("./sections/ExperienceSection").then(mod => {
+    // Preload related components
+    const preloadComponents = async () => {
+      await Promise.all([
+        import("@/components/Grid"),
+        import("@/components/Experience2"),
+        import("@/components/LogoTicker")
+      ]);
+    };
+    preloadComponents();
+    return mod;
+  }), {
+  loading: () => <div className="w-full h-96 bg-black-100" />
+});
+
+// Other non-critical components with loading states
+const Stats = dynamic(() => import("@/components/Stats"), {
+  loading: () => <div className="w-full h-96 bg-black-100" />,
+  ssr: false
+});
+
+const ContentSection = dynamic(() => 
+  import("./sections/ContentSection").then(mod => {
+    // Preload content components
+    const preloadComponents = async () => {
+      await Promise.all([
+        import("@/components/Testimonials"),
+        import("@/components/Projects")
+      ]);
+    };
+    preloadComponents();
+    return mod;
+  }), {
+  loading: () => <div className="w-full h-96 bg-white" />
+});
+
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <div className="w-full h-96 bg-black" />,
+  ssr: false
+});
+
+const FooterSection = dynamic(() => 
+  Promise.all([
+    import("@/components/Footer2"),
+    import("@/components/Footer")
+  ]).then(([Footer2, Footer]) => {
+    const CombinedFooter = () => (
+      <>
+        <Footer2.default />
+        <Footer.default />
+      </>
+    );
+    return CombinedFooter;
+  }), {
+  loading: () => <div className="h-32 bg-black" />
+});
+
+// Preload critical assets
+const preloadAssets = () => {
+  if (typeof window !== 'undefined') {
+    // Preload critical images
+    const imagesToPreload = ['/zeej3.svg'];
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+};
 
 const fadeInUpKeyframes = `
   @keyframes riseUp {
@@ -36,7 +98,7 @@ const fadeInUpKeyframes = `
   }
 
   .animate-rise-up {
-    animation: riseUp 10s ease-out forwards;
+    animation: riseUp 3s ease-out forwards;
   }
 
   .cursor-none * {
@@ -58,57 +120,67 @@ const Preloader = ({ setIsLoading }: PreloaderProps) => {
   const [counter, setCounter] = useState(0);
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [isBirdflyLoaded, setIsBirdflyLoaded] = useState(false);
+  const [startTime] = useState(Date.now());
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Preload the image
+    // Load MetallicPaintRender immediately
+    setIsImageLoading(false); // Show MetallicPaintRender right away
+
+    // Load other assets after MetallicPaintRender is shown
     const img = new Image();
     img.src = '/zeej3.svg';
     img.onload = () => {
-      console.log('Image preloaded successfully');
-      setIsImageLoading(false);
+      // Other assets loaded
     };
-    img.onerror = (e) => {
-      console.error('Error preloading image:', e);
-      setIsImageLoading(false);
+    img.onerror = () => {
+      // Handle error silently
     };
+
+    // Set minimum loading time separately
+    setTimeout(() => {
+      setIsBirdflyLoaded(true);
+    }, 3500); // Increased to 4 seconds for smoother loading
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCounter(prev => {
-        const newValue = isBirdflyLoaded
-          ? Math.min(prev + 20, 100)
-          : Math.min(prev + 0.4, 100);
+        const elapsedTime = Date.now() - startTime;
+        const minTimeReached = elapsedTime > 3500;
         
-        // When counter reaches 100, hide preloader and enable scrolling
-        if (newValue === 100) {
+        let increment;
+        if (!isBirdflyLoaded) {
+          // Very slow initial loading (0-20%) to ensure MetallicPaintRender is visible
+          increment = Math.min(prev + 0.6, 20);
+        } else if (prev < 20) {
+          // If still under 20%, slowly progress
+          increment = Math.min(prev + 0.4, 20);
+        } else if (!minTimeReached) {
+          // Medium speed until minimum time reached (20-60%)
+          increment = Math.min(prev + 0.6, 60);
+        } else {
+          // Final phase (60-100%)
+          increment = Math.min(prev + 1.5, 100);
+        }
+        
+        if (increment === 100 && minTimeReached) {
           setIsLoading(false);
           document.body.style.overflow = "";
           clearInterval(timer);
         }
         
-        return newValue;
+        return increment;
       });
-    }, 16);
+    }, 40); // Even slower updates for smoother progression
 
     return () => clearInterval(timer);
-  }, [isBirdflyLoaded, setIsLoading]);
-
-  // Listen for a custom event from Birdfly component
-  useEffect(() => {
-    const handleBirdflyLoaded = () => {
-      setIsBirdflyLoaded(true);
-    };
-
-    window.addEventListener('birdflyLoaded', handleBirdflyLoaded);
-    return () => window.removeEventListener('birdflyLoaded', handleBirdflyLoaded);
-  }, []);
+  }, [isBirdflyLoaded, setIsLoading, startTime]);
 
   return (
     <div className="relative overflow-hidden w-full h-screen">
-      <div className="z-52 animate-rise-up transform translate-y-0 transition-transform duration-1000 ease-out">
+      <div className="z-52 animate-rise-up transform translate-y-0 transition-transform duration-3000 ease-out">
         {!isImageLoading && <MetallicPaintRender />}
       </div>
       <div className="fixed bottom-8 left-8 text-gray-300 font-mono z-51 flex items-center gap-2">
@@ -118,110 +190,69 @@ const Preloader = ({ setIsLoading }: PreloaderProps) => {
   );
 };
 
+const LoadingFallback = () => (
+  <div className="w-full h-96 animate-pulse bg-gray-200" />
+);
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [content, setContent] = useState<React.ReactNode>(null);
   const [isLgScreen, setIsLgScreen] = useState(false);
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   useEffect(() => {
-    // Remove cursor hiding during loading
+    // Preload assets when component mounts
+    preloadAssets();
+    setAssetsLoaded(true);
+  }, []);
+
+  useEffect(() => {
     if (!isLoading) {
       document.body.style.cursor = 'none';
     }
   }, [isLoading]);
 
   useEffect(() => {
-    //for custom cursor only on lg screens and above
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsLgScreen(true);
-      } else {
-        setIsLgScreen(false);
-      }
+      setIsLgScreen(window.innerWidth >= 1024);
     };
-
-    // Initial check
     handleResize();
-
-    // Add event listener to update state on window resize
     window.addEventListener('resize', handleResize);
-
-    // Cleanup event listener
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-  // Disable scroll during preloader
-  useEffect(() => {
-    const disableScroll = () => {
-      document.body.style.overflow = "hidden";
-    };
-    
-    disableScroll();
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  // Pre-render content while preloader is showing
-  useEffect(() => {
-    const preRenderContent = () => {
-      const mainContent = (
-        <main className={`${isLoading ? 'hidden' : 'block'} cursor-none`}>
-          <Header />
-          <Hero2 />
-          <div className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5" data-theme="dark" data-cursor="pointer">
-            <LogoTicker />
-            <Grid />
-            <Experience2 />
-          </div>
-          <div className="bg-color-100 overflow-hidden" data-theme="dark" data-cursor="hide">
-            <Stats />
-          </div>
-          <div className="relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5" data-cursor="view">
-            <Testimonials />
-            <Projects />
-          </div>
-          <div className="relative overflow-hidden" data-theme="dark" data-cursor="contact">
-            <Contact />
-          </div>
-          <Footer2/>
-        </main>
-      );
-      setContent(mainContent);
-    };
-
-    // Start pre-rendering immediately
-    preRenderContent();
-  }, [isLoading]);
+  if (!assetsLoaded) {
+    return <div className="w-full h-screen bg-black" />;
+  }
 
   return (
     <div className={!isLoading ? 'cursor-none' : ''}>
       {isLgScreen && !isLoading && <CustomCursor />}
       {isLoading && <Preloader setIsLoading={setIsLoading} />}
+      
       <main className={`${isLoading ? 'hidden' : 'block'} ${!isLoading ? 'cursor-none' : ''}`}>
         <Header />
         <Hero2 />
-        <div className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5" data-theme="dark" data-cursor="pointer">
-          <LogoTicker />
-          <Grid />
-          <Experience2 />
-        </div>
-        <div className="bg-black-100 overflow-hidden" data-theme="dark" data-cursor="hide">
-          <Stats />
-        </div>
-        <div className="relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5" data-cursor="view">
-          <Testimonials />
-          <Projects />
-        </div>
-        <div className="relative overflow-hidden" data-theme="dark" data-cursor="contact">
-          <Contact />
-        </div>
-        <Footer2/>
-        <Footer/>
         
-        {/* Fixed Rotating Button */}
+        <Suspense fallback={<LoadingFallback />}>
+          <ExperienceSection />
+        </Suspense>
+
+        <Suspense fallback={<LoadingFallback />}>
+          <Stats />
+        </Suspense>
+
+        <Suspense fallback={<LoadingFallback />}>
+          <ContentSection />
+        </Suspense>
+
+        <Suspense fallback={<LoadingFallback />}>
+          <Contact />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-32" />}>
+          <FooterSection />
+        </Suspense>
+
         <div className="fixed bottom-8 right-8 z-50 hidden md:block">
           <RotatingButton2 />
         </div>

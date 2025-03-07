@@ -102,10 +102,10 @@ const TestimonialsColumn = (props: {
         }}
         className="flex flex-col gap-6 pb-6"
       >
-        {[...new Array(isMobile ? 4 : 2)].fill(0).map((_, index) => (
-          <React.Fragment key={index}>
-            {props.testimonials.map(({ text, imageSrc, name, username, bgColor }) => (
-              <div key={index} className="card">
+        {[...new Array(isMobile ? 4 : 2)].fill(0).map((_, outerIndex) => (
+          <React.Fragment key={`column-${outerIndex}`}>
+            {props.testimonials.map(({ text, imageSrc, name, username, bgColor }, innerIndex) => (
+              <div key={`testimonial-${outerIndex}-${innerIndex}-${name}`} className="card">
                 <div>{text}</div>
                 <div className="flex items-center gap-2 mt-5">
                   <div className={`relative h-10 w-10 rounded-full ${bgColor} flex items-center justify-center overflow-hidden`}>

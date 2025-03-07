@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ExternalLink, Globe, Code2, Boxes } from 'lucide-react';
 import Underline from './ui/Underline';
 import RiseOnScroll from './ui/RiseOnScroll';
+import Image from 'next/image';
 
 interface Project {
   title: string;
@@ -106,11 +107,11 @@ const projects: Project[] = [
     link: "https://rag-nasaai-spacelovers.onrender.com",
     category: 'Data',
     technologies: [
-      { name: "Next.js", icon: "https://seeklogo.com/images/N/next-js-icon-logo-EE302D5DBD-seeklogo.com.png" },
-      { name: "Astra DB", icon: "astra.png" },
+      { name: "Next.js", icon: "/nextjs-icon.svg" },
+      { name: "Astra DB", icon: "/astra.png" },
       { name: "Gemini", icon: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" }
     ],
-    projimg: "proj-nasa-data.jpeg"
+    projimg: "/proj-nasa-data.jpeg"
   },
   {
     title: "Data Analysis using Machine Learning",
@@ -208,9 +209,11 @@ function Projects() {
                       <div className="aspect-[9:16] rounded-3xl bg-gray-100 transform transition-all duration-700 overflow-hidden">
                         <div className="w-full h-full rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
                           <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full h-full">
-                            <img 
+                            <Image 
                               src={project.projimg} 
                               alt={project.title}
+                              width={800}
+                              height={1200}
                               className="object-contain rounded-3xl transition-all duration-700 hover:scale-110 w-full h-full"
                             />
                           </a>
@@ -231,9 +234,11 @@ function Projects() {
                       <div className="flex text-center items-center justify-center flex-wrap gap-4 py-4">
                         {project.technologies.map((tech, techIndex) => (
                           <div key={techIndex} className="flex items-center gap-2">
-                            <img
+                            <Image
                               src={tech.icon}
                               alt={tech.name}
+                              width={40}
+                              height={40}
                               className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                             />
                             <span className="text-sm sm:text-base text-gray-600">{tech.name}</span>
@@ -283,9 +288,11 @@ function Projects() {
                       <div className="flex flex-wrap text-center items-center justify-center gap-4 py-4">
                         {project.technologies.map((tech, techIndex) => (
                           <div key={techIndex} className="flex items-center gap-2">
-                            <img
+                            <Image
                               src={tech.icon}
                               alt={tech.name}
+                              width={40}
+                              height={40}
                               className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                             />
                             <span className="text-sm sm:text-base text-gray-600">{tech.name}</span>
@@ -299,9 +306,11 @@ function Projects() {
                       <div className="aspect-[9:16] rounded-3xl bg-gray-100 transform transition-all duration-700 overflow-hidden">
                         <div className="w-full h-full rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
                           <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full h-full">
-                            <img 
+                            <Image 
                               src={project.projimg} 
                               alt={project.title}
+                              width={800}
+                              height={1200}
                               className="object-contain rounded-3xl transition-all duration-700 hover:scale-110 w-full h-full"
                             />
                           </a>

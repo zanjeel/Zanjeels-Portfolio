@@ -7,8 +7,9 @@ import { ThemeProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Zanjeel Tariq | Portfolio",
-  description: "Full Stack Developer & Designer specializing in creating innovative web experiences with modern technologies.",
+  title: "Zanjeel's Portfolio",
+  description: 'Software Engineer & Data Scientist Portfolio',
+  metadataBase: new URL('https://zanjeel-portfolio.netlify.app'),
   openGraph: {
     title: "Zanjeel Tariq | Portfolio",
     description: "Full Stack Developer & Designer specializing in creating innovative web experiences with modern technologies.",

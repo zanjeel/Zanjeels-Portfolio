@@ -7,28 +7,12 @@ import { Hero2 } from "@/components/Hero2";
 import { Header } from "@/components/Header";
 import CustomCursor from "@/components/ui/CustomCursor";
 import RotatingButton2 from "@/components/ui/RotatingButton2";
+import ExperienceSection from "./sections/ExperienceSection";
 
 // Load MetallicPaintRender with custom loading strategy
 const MetallicPaintRender = dynamic(() => import("@/components/MetallicPaintRender"), {
   ssr: false,
   loading: () => <div className="w-full h-screen bg-black" />,
-});
-
-// Group related components together for better code splitting
-const ExperienceSection = dynamic(() => 
-  import("./sections/ExperienceSection").then(mod => {
-    // Preload related components
-    const preloadComponents = async () => {
-      await Promise.all([
-        import("@/components/Grid"),
-        import("@/components/Experience2"),
-        import("@/components/LogoTicker")
-      ]);
-    };
-    preloadComponents();
-    return mod;
-  }), {
-  loading: () => <div className="w-full h-96 bg-black-100" />
 });
 
 // Other non-critical components with loading states
@@ -233,9 +217,7 @@ const Home = () => {
         <Header />
         <Hero2 />
         
-        <Suspense fallback={<LoadingFallback />}>
-          <ExperienceSection />
-        </Suspense>
+        <ExperienceSection />
 
         <Suspense fallback={<LoadingFallback />}>
           <Stats />

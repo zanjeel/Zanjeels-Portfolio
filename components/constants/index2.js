@@ -66,7 +66,7 @@ export const workExperiences = [
     icon: '/half_full_studio_logo.jpg',
     name: 'Half Full Studio',
     pos: 'Junior Software Engineer',
-    duration: 'Jan 2023 - Aug 2023',
+    duration: 'Jan 2023 - Jan 2024',
     title: [
       " Half Full Studio is a multinational creative technology firm, delivering innovative digital solutions, with a strong focus on design, storytelling, and user-centric development."
     ],

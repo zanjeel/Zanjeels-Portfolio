@@ -46,7 +46,7 @@ export const workExperiences = [
     pos: 'Developer',
     duration: 'Jan 2024 - Jul 2024',
     title: [
-      "Risido is a tech startup in London with a global client base."
+      " Risido is a top-tier, London based IT firm with global clientele across 4 continents."
     ],
     animation: 'Talking_0',
   },
@@ -68,7 +68,7 @@ export const workExperiences = [
     pos: 'Junior Software Engineer',
     duration: 'Jan 2023 - Aug 2023',
     title: [
-      "Half Full Studio is a global creative technology firm, delivering innovative digital solutions, with a strong focus on design, storytelling, and user-centric development."
+      " Half Full Studio is a multinational creative technology firm, delivering innovative digital solutions, with a strong focus on design, storytelling, and user-centric development."
     ],
     animation: 'Talking_0',
   },

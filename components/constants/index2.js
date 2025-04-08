@@ -41,37 +41,45 @@ export const StatsData = [
 export const workExperiences = [
   {
     id: 1,
-    icon: '/society-logo.jpg',
-    name: 'Data Science Society at Brunel',
-    pos: 'Chair',
-    duration: 'Feb 2024 - Sep 2024',
+    icon: '/risidio-logo.jpg',
+    name: 'Risidio',
+    pos: 'Developer',
+    duration: 'Jan 2024 - Jul 2024',
     title: [
-      "Data Science Society at Brunel is a Leading Tech organisation increasing tech literacy amongst students.",
-      "Here I led weekly Programming sessions for 50+ students in a range of programming languages including C++, Python, React, JavaScript and more."
+      "Risido is a tech startup in London with a global client base."
     ],
     animation: 'Talking_0',
   },
   {
     id: 2,
-    icon: '/risidio-logo.jpg',
-    name: 'Risidio',
-    pos: 'Developer Intern',
-    duration: 'Jan 2024 - Jun 2024',
+    icon: '/society-logo.jpg',
+    name: 'Brunel Data Science',
+    pos: 'Founder & Lead Developer',
+    duration: 'Feb 2024 - Sep 2024',
     title: [
-      "Risido is a tech startup in London with a global client base.",
-      "Here I developed scalable software and web solutions, working with huge datasets to bring their own flagship 3D metaverse to life."
+      "Brunel Data Science is a Leading Tech organisation increasing tech literacy amongst students."
+    ],
+    animation: 'MeetingFemale',
+  },
+  {
+    id: 3,
+    icon: '/half_full_studio_logo.jpg',
+    name: 'Half Full Studio',
+    pos: 'Junior Software Engineer',
+    duration: 'Jan 2023 - Aug 2023',
+    title: [
+      "Half Full Studio is a global creative technology firm, delivering innovative digital solutions, with a strong focus on design, storytelling, and user-centric development."
     ],
     animation: 'Talking_0',
   },
   {
-    id: 3,
+    id: 4,
     icon: '/devsinc-logo.jpg',
     name: 'Devsinc',
     pos: 'Software Engineer Intern',
     duration: 'Jul 2022 - Oct 2022',
     title: [
-      "Devsinc is a premier software firm and partners of Amazon, Google & more.",
-      "I built software and web components for their website and worked on a software and data visualisation tool to optimise ETL pipelines."
+      "Devsinc is a premier software firm and partners of Amazon, Google & more."
     ],
     animation: 'Typing1',
   },
